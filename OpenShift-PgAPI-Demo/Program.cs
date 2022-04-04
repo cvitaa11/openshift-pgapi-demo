@@ -3,8 +3,10 @@ using OpenShift_PgAPI_Demo.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add environment variables.
+builder.Configuration.AddEnvironmentVariables();
 
+// Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddDbContext<sampledbContext>(options => options.UseNpgsql(builder.Configuration["ConnectionString"]));
 
