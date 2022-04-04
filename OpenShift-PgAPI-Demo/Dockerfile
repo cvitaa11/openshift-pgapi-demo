@@ -13,7 +13,7 @@ RUN dotnet build "OpenShift-PgAPI-Demo.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "OpenShift-PgAPI-Demo.csproj" -c Release -o /app/publish
 
-FROM base AS final
+FROM registry.access.redhat.com AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "OpenShift-PgAPI-Demo.dll"]
